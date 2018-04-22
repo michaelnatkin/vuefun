@@ -1,28 +1,35 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <ball v-for="n in 20" :nn.number="n/20"/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+
+import Ball from './components/Ball.vue'
+import velocity from 'velocity-animate'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    Ball
+  }, 
+  methods: {
   }
 }
 </script>
 
-<style>
+<style> 
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  text-align: left;
   color: #2c3e50;
-  margin-top: 60px;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  transform: translateX(50vw) translateY(50vh);
 }
+
 </style>

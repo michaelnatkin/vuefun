@@ -19,7 +19,9 @@ import anime from 'animejs'
 export default {
   name: 'Ball',
   props: {
-    nn: Number
+    nn: Number,
+    minHue: Number,
+    maxHue: Number
   },
   data: function () {
     let radius = 10 + Math.random() * 300;
@@ -36,8 +38,12 @@ export default {
       duration: 500 + Math.random() * 5000,
       rotDurationX: 2000 + Math.random() * 10000,
       rotDurationY: 2000 + Math.random() * 10000,
-      hue: Math.floor(this.nn * 360),
       outerStyleObject: osl
+    }
+  },
+  computed: {
+    hue: function() {
+      return this.minHue + Math.floor(this.nn * (this.maxHue - this.minHue));
     }
   },
   methods: {

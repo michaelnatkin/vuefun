@@ -6,7 +6,7 @@
   >
   <div class="ball-outer" v-bind:style="outerStyleObject">
       <svg :height="radius*2" :width="radius*2">
-        <circle  :cx="radius" :cy="radius" :r="radius" :fill="getColor()" opacity="0.5"/>
+        <circle  :cx="radius" :cy="radius" :r="radius" :fill="getColor()" opacity="0.2"/>
       </svg>
   </div>
   </transition>
@@ -21,41 +21,41 @@ export default {
   props: {
     nn: Number,
     minHue: Number,
-    maxHue: Number
+    maxHue: Number,
+    minRadius: Number,
+    maxRadius: Number
   },
   data: function () {
-    let radius = 10 + Math.random() * 300;
-    let osl = {
-      transform: "translateX(" + -radius + "px) translateY(" + -radius + "px)"
-    }
-    console.log(osl);
+ 
     return {
       x: 50,
       y: 50,
       dx: Math.random() * 100,
       dy: Math.random() * 100,
-      radius: radius,
       duration: 500 + Math.random() * 5000,
       rotDurationX: 2000 + Math.random() * 10000,
       rotDurationY: 2000 + Math.random() * 10000,
-      outerStyleObject: osl
     }
   },
   computed: {
     hue: function() {
       return this.minHue + Math.floor(this.nn * (this.maxHue - this.minHue));
+    },
+    radius: function () {
+      return this.maxRadius - (this.nn * (this.maxRadius - this.minRadius));
+    },
+    outerStyleObject: function () {
+      return {
+        transform: "translateX(" + -this.radius + "px) translateY(" + -this.radius + "px)"
+      }
     }
   },
   methods: {
     getColor: function () {
       let x = "hsl(" + this.hue +", 70%, 50%)";
-      console.log("hi", x);
       return x;
-
     },
-    beforeEnter: function (el) {
-    },
-    enter: function (el, done) {
+    enter: function (el) {
       anime({
         targets: el.children[0],
         rotateX: {

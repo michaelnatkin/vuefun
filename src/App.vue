@@ -19,8 +19,8 @@
           <v-card id="controls" class="elevation-15">
             <v-card-text>
               <v-slider v-model="numBalls" step="1" label="N" min="1" max="50" ticks thumb-label hide-details></v-slider>
-              <v-slider v-model="minRadius" label="minRadius" min="1" max="500" ticks thumb-label hide-details></v-slider>
-              <v-slider v-model="maxRadius" label="maxRadius" min="1" max="500" ticks thumb-label hide-details></v-slider>
+              <v-slider v-model="ballData.minRadius" label="xminRadius" min="1" max="500" ticks thumb-label hide-details></v-slider>
+              <v-slider v-model="ballData.maxRadius" label="xmaxRadius" min="1" max="500" ticks thumb-label hide-details></v-slider>
             </v-card-text>
           </v-card>
         </v-tab-item>
@@ -35,8 +35,8 @@
         >
           <v-card id="controls" class="elevation-15">
             <v-card-text>
-              <v-slider v-model="minHue" label="minHue" min="0" max="360"  hide-details thumb-label></v-slider>
-              <v-slider v-model="maxHue" label="maxHue" min="0" max="360"  hide-details thumb-label></v-slider>
+              <v-slider v-model="ballData.minHue" label="minHue" min="1" max="360"  hide-details thumb-label></v-slider>
+              <v-slider v-model="ballData.maxHue" label="maxHue" min="1" max="360"  hide-details thumb-label></v-slider>
             </v-card-text>
           </v-card>
         </v-tab-item>
@@ -44,9 +44,9 @@
 
       <v-content id="balls">
         <ball v-for="n in numBalls" 
-          :nn.number="n/numBalls" 
-          :minHue.number="minHue" 
-          :maxHue.number="maxHue"
+          :nn="n/numBalls" 
+          :key="n"
+          v-bind="ballData" 
         />
       </v-content>
     </v-app>
@@ -56,26 +56,24 @@
 <script>
 
 import Ball from './components/Ball.vue'
-import velocity from 'velocity-animate'
-import RangeSlider from 'vue-range-slider'
-// you probably need to import built-in style
-import "vue-range-slider/dist/vue-range-slider.css"
 
 export default {
   name: 'app',
   components: {
-    Ball,
-    RangeSlider
+    Ball
   }, 
   methods: {
   },
   data () {
     return {
       numBalls: 10,
-      minHue: 0,
-      maxHue: 360,
-      minRadius: 50,
-      maxRadius: 300
+
+      ballData: {
+        minRadius: 50,
+        maxRadius: 300,  
+        minHue: 0,
+        maxHue: 360
+      }
     }
   }
 }
@@ -99,7 +97,7 @@ export default {
   width: 100vw;
   height: 100vw;
   bottom: 0px;
-  transform: translateX(50vw) translateY(50vw);
+  transform: translateX(50vw) translateY(50vh);
 }
 
 #controls {

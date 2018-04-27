@@ -1,46 +1,30 @@
 <template>
   <div id="app">
     <v-app id="inspire">
-      <v-tabs
-        v-model="active"
-        color="cyan"
-        dark
-        slider-color="yellow"
-      >
-        <v-tab
-          :key="1"
-          ripple
-        >
-          Main
-        </v-tab>
-        <v-tab-item
-          :key="1"
-        >
-          <v-card id="controls" class="elevation-15">
-            <v-card-text>
+      <v-toolbar id="bar" app='true' flat='true' floating='true'>
+        <v-menu offset-y min-width="400px">
+          <v-toolbar-title slot="activator">
+            <span>Main</span>
+            <v-icon>arrow_drop_down</v-icon>
+          </v-toolbar-title>
+          <v-list>
+            <v-list-tile>
               <v-slider v-model="numBalls" step="1" label="N" min="1" max="50" ticks thumb-label hide-details></v-slider>
+            </v-list-tile>
+            <v-list-tile>
               <v-slider v-model="ballData.minRadius" label="xminRadius" min="1" max="500" ticks thumb-label hide-details></v-slider>
+            </v-list-tile>
+            <v-list-tile>
               <v-slider v-model="ballData.maxRadius" label="xmaxRadius" min="1" max="500" ticks thumb-label hide-details></v-slider>
-            </v-card-text>
-          </v-card>
-        </v-tab-item>
-        <v-tab
-          :key="2"
-          ripple
-        >
-          Color
-        </v-tab>
-        <v-tab-item
-          :key="2"
-        >
-          <v-card id="controls" class="elevation-15">
-            <v-card-text>
-              <v-slider v-model="ballData.minHue" label="minHue" min="1" max="360"  hide-details thumb-label></v-slider>
-              <v-slider v-model="ballData.maxHue" label="maxHue" min="1" max="360"  hide-details thumb-label></v-slider>
-            </v-card-text>
-          </v-card>
-        </v-tab-item>
-      </v-tabs>
+            </v-list-tile>
+          </v-list>
+        </v-menu>
+        <v-menu offset-y min-width="400px">
+          <v-btn slot="activator" flat>Color</v-btn>
+          <v-slider v-model="ballData.minHue" label="minHue" min="1" max="360"  hide-details thumb-label></v-slider>
+          <v-slider v-model="ballData.maxHue" label="maxHue" min="1" max="360"  hide-details thumb-label></v-slider>
+        </v-menu>
+      </v-toolbar>
 
       <v-content id="balls">
         <ball v-for="n in numBalls" 
@@ -92,11 +76,16 @@ export default {
   font-size: 50% !important;
 }
 
+#bar {
+  left: 15px;
+  top: 30px;
+}
+
 #balls {
   position: absolute;
   width: 100vw;
   height: 100vw;
-  bottom: 0px;
+  top: 100px;
   transform: translateX(50vw) translateY(50vh);
 }
 

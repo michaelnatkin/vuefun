@@ -1,7 +1,6 @@
 <template>
   <transition
     v-on:enter="enter"
-    v-on:before-enter="beforeEnter"
     appear
   >
   <div class="ball-outer" v-bind:style="outerStyleObject">
@@ -25,8 +24,7 @@ export default {
     minRadius: Number,
     maxRadius: Number
   },
-  data: function () {
- 
+  data: function () { 
     return {
       x: 50,
       y: 50,

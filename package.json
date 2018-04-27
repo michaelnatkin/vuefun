@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "animejs": "^2.2.0",
+    "material-icons": "^0.2.1",
+    "mdi": "^2.2.43",
     "vue": "^2.5.13",
     "vue-range-slider": "^0.6.0",
     "vuetify": "^1.0.17"

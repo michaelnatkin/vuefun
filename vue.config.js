@@ -2,7 +2,7 @@
 module.exports = {
   configureWebpack: {
     output: {
-      publicPath: 'vuefun/'
+      publicPath: '/vuefun/'
     }
   }
 }

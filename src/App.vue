@@ -1,33 +1,40 @@
 <template>
   <div id="app">
     <v-app id="inspire">
-      <v-menu offset-y="true">
-        <v-btn slot="activator" fab><v-icon>settings</v-icon></v-btn>
+      <v-container grid-list-md text-xs-center>
+        <v-layout row wrap>
+          <v-flex xs12>
 
-        <v-list>
-          <v-list-tile>
-            <v-slider v-model="numBalls" step="1" min="1" max="50" hint="N" persistent-hint ticks thumb-label/>
-          </v-list-tile>
-          <v-list-tile>
-            <v-slider v-model="ballData.minRadius" hint="Min Radius" persistent-hint min="1" max="500" ticks thumb-label></v-slider>
-          </v-list-tile>
-          <v-list-tile>
-            <v-slider v-model="ballData.maxRadius" hint="Max Radius" persistent-hint min="1" max="500" ticks thumb-label></v-slider>
-          </v-list-tile>
-        </v-list>
-      </v-menu>
+            <v-menu min-width="300px" offset-y="true">
+              <v-btn slot="activator" fab><v-icon>settings</v-icon></v-btn>
+              <v-list>
+                <v-list-tile>
+                  <v-slider v-model="numBalls" step="1" min="1" max="50" hint="N" persistent-hint ticks thumb-label/>
+                </v-list-tile>
+                <v-list-tile>
+                  <v-slider v-model="ballData.minRadius" hint="Min Radius" persistent-hint min="1" max="500" ticks thumb-label></v-slider>
+                </v-list-tile>
+                <v-list-tile>
+                  <v-slider v-model="ballData.maxRadius" hint="Max Radius" persistent-hint min="1" max="500" ticks thumb-label></v-slider>
+                </v-list-tile>
+              </v-list>
+            </v-menu>
 
-      <v-menu offset-y="true">
-        <v-btn slot="activator" fab><v-icon>tonality</v-icon></v-btn>
-        <v-list-tile>
-          <v-slider v-model="ballData.minHue" hint="Min Hue" persistent-hint min="1" max="360" thumb-label></v-slider>
-        </v-list-tile>
+            <v-menu min-width="300px" offset-y="true">
+              <v-btn slot="activator" fab><v-icon>tonality</v-icon></v-btn>
+              <v-list>
+                <v-list-tile>
+                  <v-slider v-model="ballData.minHue" hint="Min Hue" persistent-hint min="1" max="360" thumb-label></v-slider>
+                </v-list-tile>
 
-        <v-list-tile>
-          <v-slider v-model="ballData.maxHue" hint="Max Hue" persistent-hint min="1" max="360" thumb-label></v-slider>
-        </v-list-tile>
-
-      </v-menu>
+                <v-list-tile>
+                  <v-slider v-model="ballData.maxHue" hint="Max Hue" persistent-hint min="1" max="360" thumb-label></v-slider>
+                </v-list-tile>
+              </v-list>
+            </v-menu>
+          </v-flex>
+        </v-layout>
+      </v-container>
 
 
       <v-content id="balls">
@@ -68,6 +75,7 @@ export default {
 </script>
 
 <style> 
+
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

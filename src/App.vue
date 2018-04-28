@@ -1,30 +1,34 @@
 <template>
   <div id="app">
     <v-app id="inspire">
-      <v-toolbar id="bar" app='true' flat='true' floating='true'>
-        <v-menu offset-y min-width="400px">
-          <v-toolbar-title slot="activator">
-            <span>Main</span>
-            <v-icon>arrow_drop_down</v-icon>
-          </v-toolbar-title>
-          <v-list>
-            <v-list-tile>
-              <v-slider v-model="numBalls" step="1" label="N" min="1" max="50" ticks thumb-label hide-details></v-slider>
-            </v-list-tile>
-            <v-list-tile>
-              <v-slider v-model="ballData.minRadius" label="xminRadius" min="1" max="500" ticks thumb-label hide-details></v-slider>
-            </v-list-tile>
-            <v-list-tile>
-              <v-slider v-model="ballData.maxRadius" label="xmaxRadius" min="1" max="500" ticks thumb-label hide-details></v-slider>
-            </v-list-tile>
-          </v-list>
-        </v-menu>
-        <v-menu offset-y min-width="400px">
-          <v-btn slot="activator" flat>Color</v-btn>
-          <v-slider v-model="ballData.minHue" label="minHue" min="1" max="360"  hide-details thumb-label></v-slider>
-          <v-slider v-model="ballData.maxHue" label="maxHue" min="1" max="360"  hide-details thumb-label></v-slider>
-        </v-menu>
-      </v-toolbar>
+      <v-menu offset-y="true">
+        <v-btn slot="activator" fab><v-icon>settings</v-icon></v-btn>
+
+        <v-list>
+          <v-list-tile>
+            <v-slider v-model="numBalls" step="1" min="1" max="50" hint="N" persistent-hint ticks thumb-label/>
+          </v-list-tile>
+          <v-list-tile>
+            <v-slider v-model="ballData.minRadius" hint="Min Radius" persistent-hint min="1" max="500" ticks thumb-label></v-slider>
+          </v-list-tile>
+          <v-list-tile>
+            <v-slider v-model="ballData.maxRadius" hint="Max Radius" persistent-hint min="1" max="500" ticks thumb-label></v-slider>
+          </v-list-tile>
+        </v-list>
+      </v-menu>
+
+      <v-menu offset-y="true">
+        <v-btn slot="activator" fab><v-icon>tonality</v-icon></v-btn>
+        <v-list-tile>
+          <v-slider v-model="ballData.minHue" hint="Min Hue" persistent-hint min="1" max="360" thumb-label></v-slider>
+        </v-list-tile>
+
+        <v-list-tile>
+          <v-slider v-model="ballData.maxHue" hint="Max Hue" persistent-hint min="1" max="360" thumb-label></v-slider>
+        </v-list-tile>
+
+      </v-menu>
+
 
       <v-content id="balls">
         <ball v-for="n in numBalls" 
@@ -76,6 +80,10 @@ export default {
   font-size: 50% !important;
 }
 
+.menu {
+  z-index: 100;
+}
+
 #bar {
   left: 15px;
   top: 30px;
@@ -84,8 +92,7 @@ export default {
 #balls {
   position: absolute;
   width: 100vw;
-  height: 100vw;
-  top: 100px;
+  height: 100vh;
   transform: translateX(50vw) translateY(50vh);
 }
 

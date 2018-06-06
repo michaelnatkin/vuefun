@@ -4,18 +4,26 @@
       <v-container grid-list-md text-xs-center>
         <v-layout row wrap>
           <v-flex xs12>
-
             <v-menu min-width="300px" offset-y="true">
               <v-btn slot="activator" fab><v-icon>settings</v-icon></v-btn>
               <v-list>
                 <v-list-tile>
+                  <v-radio-group v-model="ballData.shape">
+                    <v-radio :key="0" :label="`Circles`" :value="0"/>
+                    <v-radio :key="1" :label="`Rectangles`" :value="1"/>   
+                  </v-radio-group>
+                </v-list-tile>
+                <v-list-tile>
                   <v-slider v-model="numBalls" step="1" min="1" max="50" hint="N" persistent-hint ticks thumb-label/>
                 </v-list-tile>
                 <v-list-tile>
-                  <v-slider v-model="ballData.minRadius" hint="Min Radius" persistent-hint min="1" max="500" ticks thumb-label></v-slider>
+                  <v-slider v-model="ballData.speed" min="10" max="500" ticks hint="Speed" persistent-hint thumb-label/>
                 </v-list-tile>
                 <v-list-tile>
-                  <v-slider v-model="ballData.maxRadius" hint="Max Radius" persistent-hint min="1" max="500" ticks thumb-label></v-slider>
+                  <v-slider v-model="ballData.minRadius" hint="Min Size" persistent-hint min="1" max="500" ticks thumb-label></v-slider>
+                </v-list-tile>
+                <v-list-tile>
+                  <v-slider v-model="ballData.maxRadius" hint="Max Size" persistent-hint min="1" max="500" ticks thumb-label></v-slider>
                 </v-list-tile>
               </v-list>
             </v-menu>
@@ -64,10 +72,12 @@ export default {
       numBalls: 10,
 
       ballData: {
+        shape: 0,
+        speed: 100,
         minRadius: 50,
         maxRadius: 300,  
         minHue: 0,
-        maxHue: 360
+        maxHue: 360,
       }
     }
   }

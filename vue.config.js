@@ -1,8 +1,12 @@
 // vue.config.js
-module.exports = {
-  configureWebpack: {
-    output: {
-      publicPath: ''
+
+
+if (process.env.NODE_ENV=='production') {
+  module.exports = {
+    configureWebpack: {
+      output: {
+        publicPath: ''
+      }
     }
   }
 }
